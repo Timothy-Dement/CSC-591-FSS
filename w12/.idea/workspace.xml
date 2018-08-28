@@ -17,8 +17,8 @@
       <file leaf-file-name="w1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/w1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2628">
-              <caret line="430" column="0" lean-forward="true" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+            <state relative-caret-position="2826">
+              <caret line="325" column="32" lean-forward="true" selection-start-line="325" selection-start-column="32" selection-end-line="325" selection-end-column="32" />
               <folding>
                 <element signature="e#585#1508#0" expanded="false" />
                 <element signature="e#1583#2197#0" expanded="false" />
@@ -26,7 +26,6 @@
                 <element signature="e#2785#3890#0" expanded="false" />
                 <element signature="e#3965#4895#0" expanded="false" />
                 <element signature="e#4978#5323#0" expanded="false" />
-                <element signature="e#5403#8137#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -194,15 +193,14 @@
             <element signature="e#2785#3890#0" expanded="false" />
             <element signature="e#3965#4895#0" expanded="false" />
             <element signature="e#4978#5323#0" expanded="false" />
-            <element signature="e#5403#8137#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/w1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="430" column="0" lean-forward="true" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+        <state relative-caret-position="2826">
+          <caret line="325" column="32" lean-forward="true" selection-start-line="325" selection-start-column="32" selection-end-line="325" selection-end-column="32" />
           <folding>
             <element signature="e#585#1508#0" expanded="false" />
             <element signature="e#1583#2197#0" expanded="false" />
@@ -210,7 +208,6 @@
             <element signature="e#2785#3890#0" expanded="false" />
             <element signature="e#3965#4895#0" expanded="false" />
             <element signature="e#4978#5323#0" expanded="false" />
-            <element signature="e#5403#8137#0" expanded="false" />
           </folding>
         </state>
       </provider>
