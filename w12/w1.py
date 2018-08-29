@@ -1,24 +1,28 @@
-import re,traceback
+import re, traceback
+
 
 class O:
-  y=n=0
-  @staticmethod
-  def report():
-    print("\n# pass= %s fail= %s %%pass = %s%%"  % (
-          O.y,O.n, int(round(O.y*100/(O.y+O.n+0.001)))))
-  @staticmethod
-  def k(f):
-    try:
-      print("\n-----| %s |-----------------------" % f.__name__)
-      if f.__doc__:
-        print("# "+ re.sub(r'\n[ \t]*',"\n# ",f.__doc__))
-      f()
-      print("# pass")
-      O.y += 1
-    except:
-      O.n += 1
-      print(traceback.format_exc())
-    return f
+    y = n = 0
+
+    @staticmethod
+    def report():
+        print("\n# pass= %s fail= %s %%pass = %s%%" % (
+            O.y, O.n, int(round(O.y * 100 / (O.y + O.n + 0.001)))))
+
+    @staticmethod
+    def k(f):
+        try:
+            print("\n-----| %s |-----------------------" % f.__name__)
+            if f.__doc__:
+                print("# " + re.sub(r'\n[ \t]*', "\n# ", f.__doc__))
+            f()
+            print("# pass")
+            O.y += 1
+        except:
+            O.n += 1
+            print(traceback.format_exc())
+        return f
+
 
 ########
 #
@@ -28,7 +32,6 @@ class O:
 
 @O.k
 def p5_whitespace_formatting():
-
     """
     - Code blocks are delimited with indentation
     - Whitespace is ignored within parentheses and brackets
@@ -61,9 +64,10 @@ def p5_whitespace_formatting():
 
     single_line_sum = 6 + 7
     multi_line_sum = 6 + \
-        7
+                     7
 
     assert single_line_sum == multi_line_sum
+
 
 ########
 #
@@ -73,7 +77,6 @@ def p5_whitespace_formatting():
 
 @O.k
 def p6_modules():
-
     """
     - Modules are loaded with the import statement
     - Modules can be loaded under a given alias
@@ -100,6 +103,7 @@ def p6_modules():
     from re import match
     assert match is not 10
 
+
 ########
 #
 #  3. Page 7: Arithmetic
@@ -108,7 +112,6 @@ def p6_modules():
 
 @O.k
 def p7_arithmetic():
-
     """
     - A single forward slash is used for normal division
     - Two forward slashes are used for integer division
@@ -126,6 +129,7 @@ def p7_arithmetic():
     assert quotient_two == 2
     assert type(quotient_two) == int
 
+
 ########
 #
 #  4. Page 8: Functions
@@ -134,7 +138,6 @@ def p7_arithmetic():
 
 @O.k
 def p8_functions():
-
     """
     - Functions take zero or more inputs and return a corresponding output
     - Functions can be assigned to variables and passed to other functions
@@ -173,8 +176,9 @@ def p8_functions():
     # Arguments can be specified by name
 
     assert subtract(10, 5) == 5
-    assert subtract(a = 10) == 10
-    assert subtract(b = 5) == -5
+    assert subtract(a=10) == 10
+    assert subtract(b=5) == -5
+
 
 ########
 #
@@ -184,7 +188,6 @@ def p8_functions():
 
 @O.k
 def p9_strings():
-
     """
     - Strings can be delimited with single- or double-quotation marks
     - Use a backslash to encode special characters
@@ -218,6 +221,7 @@ def p9_strings():
 
     assert multi_line_string_one == multi_line_string_two
 
+
 ########
 #
 #  6. Page 10: Exceptions
@@ -226,7 +230,6 @@ def p9_strings():
 
 @O.k
 def p10_exceptions():
-
     """
     - Exceptions are handled using try and except
     """
@@ -242,6 +245,7 @@ def p10_exceptions():
     assert divide_ten_by(5) == 2.0
     assert divide_ten_by(0) == "Cannot divide by zero"
 
+
 ########
 #
 #  7. Page 11-12: Lists
@@ -250,7 +254,6 @@ def p10_exceptions():
 
 @O.k
 def p11to12_lists():
-
     """
     - Lists are specified using enclosing brackets
     - A sequential numeric list can be created with range(n)
@@ -339,17 +342,161 @@ def p11to12_lists():
     the_answer, _, _, _, _, _, _ = integer_list_four
     assert the_answer == 42
 
+
 ########
 #
 #  8. Page 13: Tuples
 #
 ########
 
+@O.k
+def p8_tuples():
+    """
+    - Tuples are specified using enclosing parentheses
+    - As opposed to lists, tuples are immutable, i.e., they cannot be modified
+    - Tuples can be used to return multiple values from a function
+    - Tuples can be used for multiple assignment
+    """
+
+    # Tuples are specified by using enclosing parentheses
+
+    list_one = [1, 2, 3]
+    tuple_one = (1, 2, 3)
+
+    assert list_one != tuple_one
+
+    # As opposed to lists, tuples are immutable, i.e., they cannot be modified
+
+    def set_first_element(collection):
+        try:
+            collection[0] = 42
+        except TypeError:
+            return "Cannot modify a tuple"
+
+    set_first_element(list_one)
+    assert list_one == [42, 2, 3]
+
+    assert (set_first_element(tuple_one)) == "Cannot modify a tuple"
+    assert tuple_one == (1, 2, 3)
+
+    # Tuples can be used to return multiple values from a function
+
+    def sum_and_product(x, y):
+        return (x + y), (x * y)
+
+    sp = sum_and_product(6, 7)
+
+    assert sp == (13, 42)
+
+    # Tuples can be used for multiple assignment
+
+    s, p = sum_and_product(6, 7)
+
+    assert s == 13
+    assert p == 42
+
+
 ########
 #
 #  9. Page 14-16: Dictionaries
 #
 ########
+
+@O.k
+def p14to16_dictionaries():
+    """
+    - Dictonaries are key-value pairs enclosed in curly braces
+    - Empty dictionaries are created with empty curly braces or dict()
+    - Dictionary elements are referenced by their keys in square brackets
+    - Use in to check for the presence of a key in a dictionary
+    - A standard or specified default value is returned when referencing a missing key
+    - Key-value pairs are assigned using square brackets
+    - Dictionaries have methods for returning all keys, all values, and all tuples
+    - When you try to look up a key a defaultdict does not contain, it adds the key with the function you specify
+    - Counters turn sequences of values into defaultdict(int)-like objects mapping keys to counts
+    - Counters have a frequently-used most_common method
+    """
+
+    # Dictonaries are key-value pairs enclosed in curly braces
+
+    dict_one = { "fname": "Timothy", "lname": "Dement" }
+    dict_two = { "lname": "Dement", "fname": "Timothy" }
+
+    assert dict_one == dict_two
+
+    # Empty dictionaries are created with empty curly braces or dict()
+
+    assert {} == dict()
+
+    # Dictionary elements are referenced by their keys in square brackets
+
+    assert dict_one["fname"] == "Timothy"
+
+    # Use in to check for the presence of a key in a dictionary
+
+    assert "fname" in dict_one
+    assert "mname" not in dict_one
+
+    # A standard (None) or specified default value is returned when getting a missing key
+
+    assert dict_one.get("fname", "MISSING") == "Timothy"
+    assert dict_one.get("mname", "MISSING") == "MISSING"
+    assert dict_one.get("mname") is None
+
+    # Key-value pairs are assigned using square brackets
+
+    dict_one["mname"] = "Miller"
+    assert dict_one == { "fname": "Timothy", "mname": "Miller", "lname": "Dement" }
+
+    # Dictionaries have methods for returning all keys, all values, and all tuples
+
+    assert list(dict_one.keys()) == ["fname", "lname", "mname"]
+    assert list(dict_one.values()) == ["Timothy", "Dement", "Miller"]
+    assert list(dict_one.items()) == [("fname", "Timothy"), ("lname", "Dement"), ("mname", "Miller")]
+
+    # When you try to look up a key a defaultdict does not contain, it adds the key with the function you specify
+
+    from collections import defaultdict
+
+    phrase = "how much wood could a woodchuck chuck if a woodchuck could chuck wood"
+
+    word_count = defaultdict(int)
+
+    for word in phrase.split():
+        word_count[word] += 1
+
+    assert 1 == word_count["how"] \
+           == word_count["much"] \
+           == word_count["if"]
+
+    assert 2 == word_count["wood"] \
+           == word_count["could"] \
+           == word_count["a"] \
+           == word_count["woodchuck"] \
+           == word_count["chuck"]
+
+    # Counters turn sequences of values into defaultdict(int)-like objects mapping keys to counts
+
+    from collections import Counter
+
+    letter_count = Counter(phrase.replace(" ", ""))
+
+    assert letter_count == {'o': 11,
+                            'c': 11,
+                            'u': 7,
+                            'h': 6,
+                            'd': 6,
+                            'w': 5,
+                            'k': 4,
+                            'l': 2,
+                            'a': 2,
+                            'm': 1,
+                            'i': 1,
+                            'f': 1}
+
+    # Counters have a frequently-used most_common method
+
+    assert letter_count.most_common(3) == [('o', 11), ('c', 11), ('u', 7)]
 
 ########
 #
@@ -429,5 +576,5 @@ def p11to12_lists():
 #
 ########
 
-if __name__== "__main__":
-  O.report()
+if __name__ == "__main__":
+    O.report()
