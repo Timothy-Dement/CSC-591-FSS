@@ -504,11 +504,127 @@ def p14to16_dictionaries():
 #
 ########
 
+@O.k
+def p17_sets():
+
+    """
+    - Sets represent collections of distinct elements
+    - The in operation is much faster on sets than it is on lists
+    - A set can be used to find distinct items in a collection
+    """
+
+    # Sets represent collections of distinct elements
+
+    set_one = set()
+
+    set_one.add(1)
+    set_one.add(2)
+
+    assert len(set_one) == 2
+
+    set_one.add(2)
+
+    assert len(set_one) == 2
+
+    # The in operation is much faster on sets than it is on lists
+
+    import time
+
+    long_list = range(999999)
+    long_set = set(long_list)
+
+    list_start = time.perf_counter()
+    1000000 in long_list
+    list_end = time.perf_counter()
+
+    list_time = list_end - list_start
+
+    set_start = time.perf_counter()
+    1000000 in long_set
+    set_end = time.perf_counter()
+
+    set_time = set_end - set_start
+
+    assert set_time < list_time
+
+    # A set can be used to find distinct items in a collection
+
+    phrase = "how much wood could a woodchuck chuck if a woodchuck could chuck wood"
+
+    word_list = phrase.split()
+
+    assert len(word_list) == 13
+
+    word_set = set(word_list)
+
+    assert len(word_set) == 8
+
 ########
 #
 #  11. Page 18: Control Flow
 #
 ########
+
+@O.k
+def p18_control_flow():
+
+    """
+    - Conditional controls are given by the keywords if, elif, and else
+    - Ternary statements combine if-then-else statements onto one line
+    - While loops are used by while <condition>:
+    - For loops are used by for <variable> in <list>:
+    - Finer controls can be used with continue and break
+    """
+
+    # Conditional controls are given by the keywords if, elif, and else
+
+    def plus_minus_zero(number):
+        if number > 0:
+            return "Greater than zero"
+        elif number < 0:
+            return "Less than zero"
+        else:
+            return "Equal to zero"
+
+    assert plus_minus_zero(1) == "Greater than zero"
+    assert plus_minus_zero(-1) == "Less than zero"
+    assert plus_minus_zero(0) == "Equal to zero"
+
+    # Ternary statements combine if-then-else statements onto one line
+
+    def vowel_checker(character):
+        return "Vowel" if character in {'a', 'e', 'i', 'o', 'u'} else "Not Vowel"
+
+    assert vowel_checker('e') == 'Vowel'
+    assert vowel_checker('b') == 'Not Vowel'
+
+    # While loops are used by while <condition>:
+
+    counter_one = 0
+    while counter_one < 10:
+        counter_one += 1
+
+    assert counter_one == 10
+
+    # For loops are used by for <variable> in <list>:
+
+    for counter_two in range(10):
+        counter_two += 1
+
+    assert counter_two == 10
+
+    # Finer controls can be used with continue (go to next iteration) and break (quit loop)
+
+    odds_below_five = set()
+
+    for counter_three in range(10):
+        if counter_three % 2 == 0:
+            continue
+        if counter_three == 5:
+            break
+        odds_below_five.add(counter_three)
+
+    assert odds_below_five == {1, 3}
 
 ########
 #
@@ -516,11 +632,124 @@ def p14to16_dictionaries():
 #
 ########
 
+@O.k
+def p19to20_truthiness():
+
+    """
+    - Booleans are capitalized
+    - None is similar to null in other languages
+    - Falsy values are False, None, [], {}, "", set(), 0, and 0.0
+    - Falsy values allow you to check for empty strings, lists, sets, etc
+    - Lists have all and any functions to check if all elements or any elements are truthy
+    """
+
+    # Booleans are capitalized
+
+    assert True
+    assert not False
+
+    # None is similar to null in other languages
+
+    none_var = None
+    assert none_var is None
+
+    # Falsy values are False, None, [], {}, "", set(), 0, and 0.0
+
+    assert not False
+    assert not None
+    assert not []
+    assert not {}
+    assert not ""
+    assert not 0
+    assert not 0.0
+
+    # Falsy values allow you to check for empty strings, lists, sets, etc
+
+    string_one = ""
+    string_two = "Hello, World!"
+
+    def bad_first_char(string):
+        try:
+            return string[0]
+        except IndexError:
+            return "Empty string"
+
+    def good_first_char(string):
+        return string and string[0]
+
+    blank_bad_method = bad_first_char(string_one)
+    hello_bad_method = bad_first_char(string_two)
+
+    blank_good_method = good_first_char(string_one)
+    hello_good_method = good_first_char(string_two)
+
+    assert blank_bad_method == 'Empty string'
+    assert hello_bad_method == 'H'
+
+    assert blank_good_method == ''
+    assert hello_good_method == 'H'
+
+    # Lists have all and any functions to check if all elements or any elements are truthy
+
+    all_true_list = [True, not None, [1], {1}, "1", 1, 1.0]
+    some_true_list = [True, None, [1], {}, "1", 0, 1.0]
+    none_true_list = [False, None, [], {}, "", 0, 0.0]
+
+    assert all(all_true_list)
+    assert any(all_true_list)
+
+    assert not all(some_true_list)
+    assert any(some_true_list)
+
+    assert not all(none_true_list)
+    assert not any(none_true_list)
+
 ########
 #
 #  13. Page 22: Sorting
 #
 ########
+
+@O.k
+def p22_sorting():
+
+    """
+    - The sorted function is non-destructive, and returns a new list
+    - Lists have a sort method that sorts in-place
+    - Specifying reverse = True reverses the sort order
+    - Specifying key = <function> compares according to the function results, as opposed to the values
+    """
+
+    # The sorted function is non-destructive, and returns a new list
+
+    list_one = [4, 1, 2, 3]
+    list_two = sorted(list_one)
+
+    assert list_one != [1, 2, 3, 4]
+    assert list_two == [1, 2, 3, 4]
+
+    # Lists have a sort method that sorts in-place
+
+    list_one.sort()
+
+    assert list_one == list_two == [1, 2, 3, 4]
+
+    # Specifying reverse = True reverses the sort order
+
+    list_three = sorted(list_one, reverse = True)
+    assert list_three == [4, 3, 2, 1]
+
+    # Specifying key = <function> compares according to the function results, as opposed to the values
+
+    students = [ { "id": 1, "fname": "Aaron", "lname": "Zapato"},
+                 { "id": 2, "fname": "Benjamin", "lname": "Yarrow"},
+                 { "id": 3, "fname": "Charles", "lname": "Xavier"} ]
+
+    sorted_students = sorted(students, key = lambda student: student['lname'])
+
+    assert sorted_students[0]['lname'] == 'Xavier'
+    assert sorted_students[1]['lname'] == 'Yarrow'
+    assert sorted_students[2]['lname'] == 'Zapato'
 
 ########
 #
