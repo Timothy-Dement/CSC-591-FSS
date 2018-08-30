@@ -419,8 +419,8 @@ def p14to16_dictionaries():
 
     # Dictonaries are key-value pairs enclosed in curly braces
 
-    dict_one = { "fname": "Timothy", "lname": "Dement" }
-    dict_two = { "lname": "Dement", "fname": "Timothy" }
+    dict_one = {"fname": "Timothy", "lname": "Dement"}
+    dict_two = {"lname": "Dement", "fname": "Timothy"}
 
     assert dict_one == dict_two
 
@@ -446,7 +446,7 @@ def p14to16_dictionaries():
     # Key-value pairs are assigned using square brackets
 
     dict_one["mname"] = "Miller"
-    assert dict_one == { "fname": "Timothy", "mname": "Miller", "lname": "Dement" }
+    assert dict_one == {"fname": "Timothy", "mname": "Miller", "lname": "Dement"}
 
     # Dictionaries have methods for returning all keys, all values, and all tuples
 
@@ -498,6 +498,7 @@ def p14to16_dictionaries():
 
     assert letter_count.most_common(3) == [('o', 11), ('c', 11), ('u', 7)]
 
+
 ########
 #
 #  10. Page 17: Sets
@@ -506,7 +507,6 @@ def p14to16_dictionaries():
 
 @O.k
 def p17_sets():
-
     """
     - Sets represent collections of distinct elements
     - The in operation is much faster on sets than it is on lists
@@ -559,6 +559,7 @@ def p17_sets():
 
     assert len(word_set) == 8
 
+
 ########
 #
 #  11. Page 18: Control Flow
@@ -567,7 +568,6 @@ def p17_sets():
 
 @O.k
 def p18_control_flow():
-
     """
     - Conditional controls are given by the keywords if, elif, and else
     - Ternary statements combine if-then-else statements onto one line
@@ -626,6 +626,7 @@ def p18_control_flow():
 
     assert odds_below_five == {1, 3}
 
+
 ########
 #
 #  12. Page 19-20: Truthiness
@@ -634,7 +635,6 @@ def p18_control_flow():
 
 @O.k
 def p19to20_truthiness():
-
     """
     - Booleans are capitalized
     - None is similar to null in other languages
@@ -704,6 +704,7 @@ def p19to20_truthiness():
     assert not all(none_true_list)
     assert not any(none_true_list)
 
+
 ########
 #
 #  13. Page 22: Sorting
@@ -712,7 +713,6 @@ def p19to20_truthiness():
 
 @O.k
 def p22_sorting():
-
     """
     - The sorted function is non-destructive, and returns a new list
     - Lists have a sort method that sorts in-place
@@ -736,20 +736,21 @@ def p22_sorting():
 
     # Specifying reverse = True reverses the sort order
 
-    list_three = sorted(list_one, reverse = True)
+    list_three = sorted(list_one, reverse=True)
     assert list_three == [4, 3, 2, 1]
 
     # Specifying key = <function> compares according to the function results, as opposed to the values
 
-    students = [ { "id": 1, "fname": "Aaron", "lname": "Zapato"},
-                 { "id": 2, "fname": "Benjamin", "lname": "Yarrow"},
-                 { "id": 3, "fname": "Charles", "lname": "Xavier"} ]
+    students = [{"id": 1, "fname": "Aaron", "lname": "Zapato"},
+                {"id": 2, "fname": "Benjamin", "lname": "Yarrow"},
+                {"id": 3, "fname": "Charles", "lname": "Xavier"}]
 
-    sorted_students = sorted(students, key = lambda student: student['lname'])
+    sorted_students = sorted(students, key=lambda student: student['lname'])
 
     assert sorted_students[0]['lname'] == 'Xavier'
     assert sorted_students[1]['lname'] == 'Yarrow'
     assert sorted_students[2]['lname'] == 'Zapato'
+
 
 ########
 #
@@ -757,11 +758,94 @@ def p22_sorting():
 #
 ########
 
+@O.k
+def p23_list_comprehensions():
+    """
+    - List comprehensions can be used to select specific elements from a list
+    - List comprehensions can be used to transform the elements of a list
+    - Lists can be turned into dictionaries with list comprehensions
+    - Lists can be turned into sets with list comprehensions
+    - If the value from the list is unneeded, an underscore is typically used as the variable name
+    - List comprehensions can make use of for loops
+    """
+
+    # List comprehensions can be used to select specific elements from a list
+
+    even_numbers = [x for x in range(5) if x % 2 == 0]
+    assert even_numbers == [0, 2, 4]
+
+    # List comprehensions can be used to transform the elements of a list
+
+    squares = [x * x for x in range(5)]
+    assert squares == [0, 1, 4, 9, 16]
+
+    # Lists can be turned into dictionaries with list comprehensions
+
+    square_dict = {x: x * x for x in range(5)}
+    assert square_dict == {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+    # Lists can be turned into sets with list comprehensions
+
+    square_set = {x * x for x in range(-5, 5)}
+    assert square_set == {0, 1, 4, 9, 16, 25}
+
+    # If the value from the list is unneeded, an underscore is typically used as the variable name
+
+    count_evens = ['EVEN' for _ in range(5) if _ % 2 == 0]
+    assert len(count_evens) == 3
+
+    # List comprehensions can make use of multiple for loops
+
+    cartesian_coordinates = [(x, y) for x in range(10) for y in range(10)]
+
+    for i in range(10):
+        for j in range(10):
+            assert (i, j) in cartesian_coordinates
+
+
 ########
 #
 #  15. Page 24: Generators and Iterators
 #
 ########
+
+@O.k
+def p24_generators_and_iterators():
+    """
+    - Generators can be created within functions by using the yield operator
+    - Generators can be created by using for comprehensions wrapped in parentheses
+    """
+
+    # Generators can be created within functions by using the yield operator
+
+    def lazy_range(n):
+        i = 0
+        while i < n:
+            yield i
+            i += 1
+
+    stored_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    generated_list = []
+
+    for i in lazy_range(10):
+        generated_list.append(i)
+
+    assert stored_list != lazy_range(10)
+    assert stored_list == generated_list
+
+    # Generators can be created by using for comprehensions wrapped in parentheses
+
+    stored_evens = [0, 2, 4, 6, 8]
+    generated_evens = []
+
+    lazy_evens = (i for i in lazy_range(10) if i % 2 == 0)
+
+    for i in lazy_evens:
+        generated_evens.append(i)
+
+    assert stored_evens != lazy_evens
+    assert stored_evens == generated_evens
+
 
 ########
 #
@@ -769,11 +853,109 @@ def p22_sorting():
 #
 ########
 
+@O.k
+def p25_randomness():
+    """
+    - The random module is used to generate pseudorandom numbers
+    - Using random.seed allows us to get reproducible results
+    - Using random.randrange returns a randomly-selected element of the range
+    - Using random.shuffle randomly reorders the elements of a list
+    - Using random.choice randomly selects one element from a list
+    - Using random.sample randomly selects a sample without replacement
+    - Using random.choice multiple times randomly selects a sample with replacement
+    """
+
+    # The random module is used to generate pseudo-random numbers
+
+    import random
+
+    random_numbers = [random.random() for _ in range(5)]
+
+    for i in range(5):
+        assert random_numbers[i] > 0
+        assert random_numbers[i] < 1
+        assert type(random_numbers[i]) == float
+
+    # Using random.seed allows us to get reproducible results
+
+    random.seed(10)
+    random_one = random.random()
+
+    random.seed(10)
+    random_two = random.random()
+
+    assert random_one == random_two
+
+    # Using random.randrange returns a randomly-selected element of the range
+
+    assert random.randrange(10) in range(10)
+
+    # Using random.shuffle randomly reorders the elements of a list
+
+    alpha_five = ['a', 'b', 'c', 'd', 'e']
+    beta_five = ['a', 'b', 'c', 'd', 'e']
+
+    random.shuffle(beta_five)
+
+    for i in range(5):
+        assert beta_five[i] in alpha_five
+
+    # Using random.choice randomly selects one element from a list
+
+    random_letter = random.choice(alpha_five)
+    assert random_letter in alpha_five
+
+    # Using random.sample randomly selects a sample without replacement
+
+    without_replacement = random.sample(range(25), 20)
+
+    assert len(without_replacement) == len(set(without_replacement))
+
+    # Using random.choice multiple times randomly selects a sample with replacement
+
+    with_replacement = []
+
+    for i in range(20):
+        with_replacement.append(random.choice(range(25)))
+
+    assert len(with_replacement) >= len(set(with_replacement))
+
+
 ########
 #
 #  17. Page 26: Regular Expressions
 #
 ########
+
+@O.k
+def p26_regular_expressions():
+    """
+    - Match checks the given string against the regex
+    - Search checks the given string for instances of the regex
+    - Split divides the given string around the regex
+    - Sub replaces instances of the given regex in the given string
+    """
+
+    import re
+
+    # Match checks the given string against the regex
+
+    assert not re.match('a', 'cat')
+    assert re.match('a', 'ant')
+
+    # Search checks the given string for instances of the regex
+
+    assert not re.search('b', 'cat')
+    assert re.search('a', 'cat')
+
+    # Split divides the given string around the regex
+
+    assert re.split('[aeiou]', 'cat') == ['c', 't']
+
+    # Sub replaces instances of the given regex in the given string
+
+    assert re.sub('c', 'r', 'cat') == 'rat'
+
 
 ########
 #
@@ -781,29 +963,276 @@ def p22_sorting():
 #
 ########
 
-########
-#
-#  19. Page 28: Functional Tools
-#
-########
+@O.k
+def p27_object_oriented_programming():
+    """
+    - Constructors are specified with __init__
+    - String representations are specified with __repr__
+    """
+
+    class Set:
+
+        # Constructors are specified with __init__
+
+        def __init__(self, values=None):
+
+            self.dict = {}
+
+            if values is not None:
+                for value in values:
+                    self.add(value)
+
+        # String representations are specified with __repr__
+
+        def __repr__(self):
+            return 'Set: ' + str(list(self.dict.keys()))
+
+        def add(self, value):
+            self.dict[value] = True
+
+        def contains(self, value):
+            return value in self.dict
+
+        def remove(self, value):
+            del self.dict[value]
+
+    set_one = Set()
+    assert str(set_one) == 'Set: []'
+
+    set_two = Set([1, 2, 3])
+    assert str(set_two) == 'Set: [1, 2, 3]'
+
+    for i in range(1, 4):
+        assert set_two.contains(i)
+
+    set_two.remove(1)
+    assert str(set_two) == 'Set: [2, 3]'
+
 
 ########
 #
-#  20. Page 29: Enumerate
+#  19. Page 28-29: Functional Tools
 #
 ########
 
-########
-#
-#  21. Page 30: Zip and Argument Unpacking
-#
-########
+@O.k
+def p28to29_functional_tools():
+    """
+    - Use functools.partial to curry functions to create new functions
+    - Use map to apply a function to each element of a list
+    - Use map with multiple-argument functions and multiple lists
+    - Use filter to select for specified conditions
+    - Use functools.reduce to collapse a list to a single value by the given function
+    """
+
+    # Use functools.partial to curry functions to create new functions
+
+    from functools import partial, reduce
+
+    def exp(base, power):
+        return base ** power
+
+    always_four = partial(exp, 2, 2)
+    two_to_the = partial(exp, 2)
+    square_of = partial(exp, power=2)
+
+    assert always_four() == 4
+    assert two_to_the(3) == 8
+    assert square_of(3) == 9
+
+    # Use map to apply a function to each element of a list
+
+    def double(number):
+        return 2 * number
+
+    single_list = [1, 2, 3, 4]
+    double_list_one = map(double, single_list)
+
+    doubler = partial(map, double)
+    double_list_two = doubler(single_list)
+
+    assert list(double_list_one) == list(double_list_two) == [2, 4, 6, 8]
+
+    # Use map with multiple-argument functions and multiple lists
+
+    def multiply(x, y):
+        return x * y
+
+    def add(x, y):
+        return x + y
+
+    products = map(multiply, [1, 2], [4, 5])
+
+    assert list(products) == [4, 10]
+
+    # Use filter to select for specified conditions
+
+    phrase = "how much wood could a woodchuck chuck if a woodchuck could chuck wood"
+    letters = phrase.replace(' ', '')
+
+    import re
+
+    def is_vowel(character):
+        return re.match('[aeiou]', character)
+
+    def is_consonant(character):
+        return re.match('[bcdfghjklmnpqrstvwxyz]', character)
+
+    phrase_vowels = list(filter(is_vowel, letters))
+    phrase_consonants = list(filter(is_consonant, letters))
+
+    voweler = partial(filter, is_vowel)
+    consonanter = partial(filter, is_consonant)
+
+    phrase_vowels_two = list(voweler(letters))
+    phrase_consonants_two = list(consonanter(letters))
+
+    assert len(phrase_vowels) + len(phrase_consonants) \
+           == len(phrase_vowels_two) + len(phrase_consonants_two) \
+           == len(letters)
+
+    assert set(phrase_vowels) \
+           == set(phrase_vowels_two) \
+           == {'o', 'u', 'a', 'i'}
+
+    assert set(phrase_consonants) \
+           == set(phrase_consonants_two) \
+           == {'h', 'w', 'm', 'c', 'd', 'l', 'k', 'f'}
+
+    # Use reduce to collapse a list to a single value by the given function
+
+    multiplier = partial(reduce, multiply)
+    adder = partial(reduce, add)
+
+    product_one = reduce(multiply, range(1, 6))
+    product_two = multiplier(range(1, 6))
+
+    assert product_one == product_two == 120
+
+    sum_one = reduce(add, range(1, 6))
+    sum_two = adder(range(1, 6))
+
+    assert sum_one == sum_two == 15
+
 
 ########
 #
-#  22. Page 31-32: Args and Kwargs
+#  20. Page 30: Enumerate
 #
 ########
+
+@O.k
+def p30_enumerate():
+    """
+    - Enumerate is used to produce (index, element) tuples for list elements
+    - If we just want the indices, use _ as the variable for the element
+    """
+
+    # Enumerate is used to produce (index, element) tuples for list elements
+
+    names_list = ['Joseph', 'Patricia', 'Jessica', 'Timothy', 'Bennett']
+    names_dict = dict()
+    plus_ten = list()
+
+    for i, name in enumerate(names_list):
+        names_dict[i] = name
+
+    assert names_dict == {0: 'Joseph', 1: 'Patricia', 2: 'Jessica', 3: 'Timothy', 4: 'Bennett'}
+
+    # If we just want the indices, use _ as the variable for the element
+
+    for i, _ in enumerate(names_list):
+        plus_ten.append(i + 10)
+
+    assert plus_ten == [10, 11, 12, 13, 14]
+
+
+########
+#
+#  21. Page 31: Zip and Argument Unpacking
+#
+########
+
+@O.k
+def p31_zip_and_argument_unpacking():
+    """
+    - Zip transforms multiple lists into a single list of tuples of corresponding elements
+    - If the lists are different lengths, zip stops with the shorter list
+    - You can unzip by using an asterisk for argument unpacking
+    """
+
+    # Zip transforms multiple lists into a single list of tuples of corresponding elements
+    # If the lists are different lengths, zip stops with the shorter list
+
+    first_names = ['Aaron', 'Benjamin', 'Charles']
+    last_names = ['Zapato', 'Yarrow', 'Xavier']
+
+    more_first_names = ['Aaron', 'Benjamin', 'Charles', 'Delano']
+
+    zipped_names = list(zip(first_names, last_names))
+    more_zipped_names = list(zip(more_first_names, last_names))
+
+    assert zipped_names \
+           == more_zipped_names \
+           == [('Aaron', 'Zapato'), ('Benjamin', 'Yarrow'), ('Charles', 'Xavier')]
+
+    # You can unzip by using an asterisk for argument unpacking
+
+    retrieved_first_names, retrieved_last_names = zip(*zipped_names)
+
+    assert retrieved_first_names == tuple(first_names)
+    assert retrieved_last_names == tuple(last_names)
+
+
+########
+#
+#  22. Page 32-33: Args and Kwargs
+#
+########
+
+@O.k
+def p32to33_args_and_kwargs():
+    """
+    - Use * in the function parameters to unpack unnamed arguments into a tuple
+    - Use ** in the function parameters to unpack keyword arguments into a dict
+    - Use * in the argument list to pack unnamed arguments for function use
+    - Use ** in the argument list to pack keyword arguments for function use
+    """
+
+    # Use * in the function parameters to unpack unnamed arguments into a tuple
+    # Use ** in the function parameters to unpack keyword arguments into a dict
+
+    def magic(*args, **kwargs):
+        args_dict = dict()
+        args_dict['unnamed_args'] = args
+        args_dict['keyword_args'] = kwargs
+        return args_dict
+
+    magic_args = magic(1, 2, key="word", key2="word2")
+
+    assert magic_args['unnamed_args'] == (1, 2)
+    assert magic_args['keyword_args'] == {'key': 'word', 'key2': 'word2'}
+
+    # Use * in the argument list to pack unnamed arguments for function use
+    # Use ** in the argument list to pack keyword arguments for function use
+
+    def other_way_magic(x, y, z):
+        return x + y + z
+
+    xyz_list = [1, 2, 3]
+    xy_list = [1, 2]
+    x_list = [1]
+
+    z_dict = {'z': 3}
+    yz_dict = {'y': 2, 'z': 3}
+    xyz_dict = {'x': 1, 'y': 2, 'z': 3}
+
+    assert 6 == \
+           other_way_magic(*xyz_list) == \
+           other_way_magic(*xy_list, **z_dict) == \
+           other_way_magic(*x_list, **yz_dict) == \
+           other_way_magic(**xyz_dict)
+
 
 if __name__ == "__main__":
     O.report()
