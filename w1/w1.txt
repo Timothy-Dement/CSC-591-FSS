@@ -1,0 +1,206 @@
+
+-----| p5_whitespace_formatting |-----------------------
+# 
+# - Code blocks are delimited with indentation
+# - Whitespace is ignored within parentheses and brackets
+# - A backslash can be used if a statement spans multiple lines
+# 
+# pass
+
+-----| p6_modules |-----------------------
+# 
+# - Modules are loaded with the import statement
+# - Modules can be loaded under a given alias
+# - Import statements may overshadow existing variables
+# 
+# pass
+
+-----| p7_arithmetic |-----------------------
+# 
+# - A single forward slash is used for normal division
+# - Two forward slashes are used for integer division
+# 
+# pass
+
+-----| p8_functions |-----------------------
+# 
+# - Functions take zero or more inputs and return a corresponding output
+# - Functions can be assigned to variables and passed to other functions
+# - Anonymous functions can be created using the lambda keyword
+# - Function parameters can be given default arguments
+# - Arguments can be specified by name
+# 
+# pass
+
+-----| p9_strings |-----------------------
+# 
+# - Strings can be delimited with single- or double-quotation marks
+# - Use a backslash to encode special characters
+# - Raw strings are created using r""
+# - Multi-line strings are created using triple double-quotation marks
+# 
+# pass
+
+-----| p10_exceptions |-----------------------
+# 
+# - Exceptions are handled using try and except
+# 
+# pass
+
+-----| p11to12_lists |-----------------------
+# 
+# - Lists are specified using enclosing brackets
+# - A sequential numeric list can be created with range(n)
+# - List elements are referenced with indices in square brackets
+# - Lists can be sliced with square brackets and colons
+# - The in operator checks if a list contains a given element
+# - Lists are concatenated (destructively) with extend
+# - Lists are concatenated (non-destructively) with list addition
+# - An element can be added to a list using append
+# - Lists can be unpacked by specifying a variable list in an assignment statement
+# - An underscore is commonly used to reference unpacked elements that will not be used
+# 
+# pass
+
+-----| p8_tuples |-----------------------
+# 
+# - Tuples are specified using enclosing parentheses
+# - As opposed to lists, tuples are immutable, i.e., they cannot be modified
+# - Tuples can be used to return multiple values from a function
+# - Tuples can be used for multiple assignment
+# 
+# pass
+
+-----| p14to16_dictionaries |-----------------------
+# 
+# - Dictonaries are key-value pairs enclosed in curly braces
+# - Empty dictionaries are created with empty curly braces or dict()
+# - Dictionary elements are referenced by their keys in square brackets
+# - Use in to check for the presence of a key in a dictionary
+# - A standard or specified default value is returned when referencing a missing key
+# - Key-value pairs are assigned using square brackets
+# - Dictionaries have methods for returning all keys, all values, and all tuples
+# - When you try to look up a key a defaultdict does not contain, it adds the key with the function you specify
+# - Counters turn sequences of values into defaultdict(int)-like objects mapping keys to counts
+# - Counters have a frequently-used most_common method
+# 
+# pass
+
+-----| p17_sets |-----------------------
+# 
+# - Sets represent collections of distinct elements
+# - The in operation is much faster on sets than it is on lists
+# - A set can be used to find distinct items in a collection
+# 
+# pass
+
+-----| p18_control_flow |-----------------------
+# 
+# - Conditional controls are given by the keywords if, elif, and else
+# - Ternary statements combine if-then-else statements onto one line
+# - While loops are used by while <condition>:
+# - For loops are used by for <variable> in <list>:
+# - Finer controls can be used with continue and break
+# 
+# pass
+
+-----| p19to20_truthiness |-----------------------
+# 
+# - Booleans are capitalized
+# - None is similar to null in other languages
+# - Falsy values are False, None, [], {}, "", set(), 0, and 0.0
+# - Falsy values allow you to check for empty strings, lists, sets, etc
+# - Lists have all and any functions to check if all elements or any elements are truthy
+# 
+# pass
+
+-----| p22_sorting |-----------------------
+# 
+# - The sorted function is non-destructive, and returns a new list
+# - Lists have a sort method that sorts in-place
+# - Specifying reverse = True reverses the sort order
+# - Specifying key = <function> compares according to the function results, as opposed to the values
+# 
+# pass
+
+-----| p23_list_comprehensions |-----------------------
+# 
+# - List comprehensions can be used to select specific elements from a list
+# - List comprehensions can be used to transform the elements of a list
+# - Lists can be turned into dictionaries with list comprehensions
+# - Lists can be turned into sets with list comprehensions
+# - If the value from the list is unneeded, an underscore is typically used as the variable name
+# - List comprehensions can make use of for loops
+# 
+# pass
+
+-----| p24_generators_and_iterators |-----------------------
+# 
+# - Generators can be created within functions by using the yield operator
+# - Generators can be created by using for comprehensions wrapped in parentheses
+# 
+# pass
+
+-----| p25_randomness |-----------------------
+# 
+# - The random module is used to generate pseudorandom numbers
+# - Using random.seed allows us to get reproducible results
+# - Using random.randrange returns a randomly-selected element of the range
+# - Using random.shuffle randomly reorders the elements of a list
+# - Using random.choice randomly selects one element from a list
+# - Using random.sample randomly selects a sample without replacement
+# - Using random.choice multiple times randomly selects a sample with replacement
+# 
+# pass
+
+-----| p26_regular_expressions |-----------------------
+# 
+# - Match checks the given string against the regex
+# - Search checks the given string for instances of the regex
+# - Split divides the given string around the regex
+# - Sub replaces instances of the given regex in the given string
+# 
+# pass
+
+-----| p27_object_oriented_programming |-----------------------
+# 
+# - Constructors are specified with __init__
+# - String representations are specified with __repr__
+# 
+# pass
+
+-----| p28to29_functional_tools |-----------------------
+# 
+# - Use functools.partial to curry functions to create new functions
+# - Use map to apply a function to each element of a list
+# - Use map with multiple-argument functions and multiple lists
+# - Use filter to select for specified conditions
+# - Use functools.reduce to collapse a list to a single value by the given function
+# 
+# pass
+
+-----| p30_enumerate |-----------------------
+# 
+# - Enumerate is used to produce (index, element) tuples for list elements
+# - If we just want the indices, use _ as the variable for the element
+# 
+# pass
+
+-----| p31_zip_and_argument_unpacking |-----------------------
+# 
+# - Zip transforms multiple lists into a single list of tuples of corresponding elements
+# - If the lists are different lengths, zip stops with the shorter list
+# - You can unzip by using an asterisk for argument unpacking
+# 
+# pass
+
+-----| p32to33_args_and_kwargs |-----------------------
+# 
+# - Use * in the function parameters to unpack unnamed arguments into a tuple
+# - Use ** in the function parameters to unpack keyword arguments into a dict
+# - Use * in the argument list to pack unnamed arguments for function use
+# - Use ** in the argument list to pack keyword arguments for function use
+# 
+# pass
+
+# pass= 22 fail= 0 %pass = 100%
