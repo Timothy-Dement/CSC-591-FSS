@@ -1,5 +1,8 @@
-
 -----| ok1 |-----------------------
+# 
+# Testing original implementation on standard data.
+# 
+
 ['outlook', '$temp', 'windy', 'play']
 ['sunny', 85.0, 'FALSE', 'no']
 ['sunny', 80.0, 'TRUE', 'no']
@@ -15,9 +18,14 @@
 ['overcast', 100.0, 'TRUE', 'yes']
 ['overcast', 81.0, 'FALSE', 'yes']
 ['rainy', 71.0, 'TRUE', 'no']
+
 # pass
 
 -----| ok2 |-----------------------
+# 
+# Testing original implementation on nonstandard data.
+# 
+
 ['outlook', '$temp', 'windy', 'play']
 ['sunny', 85.0, 'FALSE', 'no']
 ['sunny', 80.0, 'TRUE', 'no']
@@ -33,6 +41,53 @@
 ['overcast', 100.0, 'TRUE', 'yes']
 ['overcast', 81.0, 'FALSE', 'yes']
 ['rainy', 71.0, 'TRUE', 'no']
+
 # pass
 
-# pass= 2 fail= 0 %pass = 100%
+-----| ok4 |-----------------------
+# 
+# Testing second implementation on standard data.
+# 
+
+['outlook', '$temp', 'windy', 'play']
+['sunny', 85.0, 'FALSE', 'no']
+['sunny', 80.0, 'TRUE', 'no']
+['overcast', 83.0, 'FALSE', 'yes']
+['rainy', 70.0, 'FALSE', 'yes']
+['rainy', 68.0, 'FALSE', 'yes']
+['rainy', 65.0, 'TRUE', 'no']
+['overcast', 64.0, 'TRUE', 'yes']
+['sunny', 72.0, 'FALSE', 'no']
+['sunny', 69.0, 'FALSE', 'yes']
+['rainy', 75.0, 'FALSE', 'yes']
+['sunny', 75.0, 'TRUE', 'yes']
+['overcast', 100.0, 'TRUE', 'yes']
+['overcast', 81.0, 'FALSE', 'yes']
+['rainy', 71.0, 'TRUE', 'no']
+
+# pass
+
+-----| ok5 |-----------------------
+# 
+# Testing second implementationon nonstandard data.
+# 
+
+['outlook', '$temp', 'windy', 'play']
+['sunny', 85.0, 'FALSE', 'no']
+['sunny', 80.0, 'TRUE', 'no']
+['overcast', 83.0, 'FALSE', 'yes']
+['rainy', 70.0, 'FALSE', 'yes']
+['rainy', 68.0, 'FALSE', 'yes']
+['rainy', 65.0, 'TRUE', 'no']
+['overcast', 64.0, 'TRUE', 'yes']
+['sunny', 72.0, 'FALSE', 'no']
+['sunny', 69.0, 'FALSE', 'yes']
+['rainy', 75.0, 'FALSE', 'yes']
+['sunny', 75.0, 'TRUE', 'yes']
+['overcast', 100.0, 'TRUE', 'yes']
+['overcast', 81.0, 'FALSE', 'yes']
+['rainy', 71.0, 'TRUE', 'no']
+
+# pass
+
+# pass= 4 fail= 0 %pass = 100%
