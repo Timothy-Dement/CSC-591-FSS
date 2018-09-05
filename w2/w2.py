@@ -142,28 +142,6 @@ def my_prep(src):
     return typed_rows
 
 
-def ok0(s):
-    correct = [['outlook', '$temp', 'windy', 'play'],
-               ['sunny', 85.0, 'FALSE', 'no'],
-               ['sunny', 80.0, 'TRUE', 'no'],
-               ['overcast', 83.0, 'FALSE', 'yes'],
-               ['rainy', 70.0, 'FALSE', 'yes'],
-               ['rainy', 68.0, 'FALSE', 'yes'],
-               ['rainy', 65.0, 'TRUE', 'no'],
-               ['overcast', 64.0, 'TRUE', 'yes'],
-               ['sunny', 72.0, 'FALSE', 'no'],
-               ['sunny', 69.0, 'FALSE', 'yes'],
-               ['rainy', 75.0, 'FALSE', 'yes'],
-               ['sunny', 75.0, 'TRUE', 'yes'],
-               ['overcast', 100.0, 'TRUE', 'yes'],
-               ['overcast', 81.0, 'FALSE', 'yes'],
-               ['rainy', 71.0, 'TRUE', 'no']]
-
-    for index, row in enumerate(my_prep(my_cols(my_rows(my_lines(s))))):
-        print(row)
-        assert row == correct[index]
-
-
 def lines(s):
     """"
     Return contents, one line at a time.
@@ -246,7 +224,6 @@ def prep(src):
         else:
 
             for num_col in num_cols:
-
                 row[num_col] = float(row[num_col])
 
             yield row
@@ -276,6 +253,7 @@ def ok0(s):
         assert row == correct[index]
 
     print()
+
 
 @O.k
 def ok1():
@@ -318,6 +296,7 @@ def ok3(s):
 
     print()
 
+
 @O.k
 def ok4():
     """
@@ -325,12 +304,14 @@ def ok4():
     """
     ok3(DATA1)
 
+
 @O.k
 def ok5():
     """
     Testing second implementationon nonstandard data.
     """
     ok3(DATA2)
+
 
 if __name__ == "__main__":
     O.report()
