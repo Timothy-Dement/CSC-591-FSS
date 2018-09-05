@@ -2,13 +2,13 @@
 
 ## Homework
 
-| Assignment | Links |
-| --- | --- |
-| Task 1: Python 101 | [`w1.py`](w1/w1.py), [`w1.txt`](w1/w1.txt) |
-| Task 2: Sample Table Data | [`w2.py`](w2/w2.py), [`w2.txt`](w2/w2.txt) |
-| Task 3: Incremental Sampling Methods | [`w3.py`](w3/w3.py), [`w3.txt`](w3/w3.txt) |
-| Task 4: Streaming Sampler | [`w4.py`](w4/w4.py), [`w4.txt`](w4/w4.txt) |
-| Task 5: | ... |
-| Task 6: | ... |
-| Task 7: | ... |
-| Task 8: | ... |
+| Assignment |
+| --- |
+| [Task 1: Python 101](w1) |
+| [Task 2: Sample Table Data](w2) |
+| [Task 3: Incremental Sampling Methods](w3) |
+| [Task 4: Streaming Sampler](w4) |
+| [Task 5: ](w5) |
+| [Task 6: ](w6) |
+| [Task 7: ](w7) |
+| [Task 8: ](w8) |
