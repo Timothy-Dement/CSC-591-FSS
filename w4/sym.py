@@ -1,5 +1,6 @@
 from math import log2
 
+
 class Sym:
 
     def __init__(self):
@@ -51,7 +52,6 @@ class Sym:
             self.entropy = 0
 
             for sym in self.sym_dict:
-
                 probability = self.sym_dict[sym] / self.count
 
                 self.entropy -= probability * log2(probability)

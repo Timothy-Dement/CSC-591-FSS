@@ -82,7 +82,7 @@ class Data:
         print('------------------------------------------------')
         print('| ', str.center('NAME', 13),
               ' | ', str.center('COUNT', 5),
-              ' | ',str.center('MODE', 5),
+              ' | ', str.center('MODE', 5),
               ' | ', str.center('FREQ', 4),
               ' |')
         print('------------------------------------------------')

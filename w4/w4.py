@@ -25,8 +25,10 @@ class O:
             print(traceback.format_exc())
         return f
 
+
 def close(x, y, c=0.01):
     return math.fabs((x - y) / y) < c
+
 
 @O.k
 def weather_test():
@@ -61,10 +63,10 @@ def weather_test():
     for num in data.nums:
 
         if data.names[num] == '$temp':
-
             assert data.nums[num].count == 14
             assert close(data.nums[num].mean, 73.57)
             assert close(data.nums[num].standard_deviation, 6.57)
+
 
 @O.k
 def weather_long_test():
@@ -107,6 +109,7 @@ def weather_long_test():
             assert data.nums[num].count == 28
             assert close(data.nums[num].mean, 81.64)
             assert close(data.nums[num].standard_deviation, 10.09)
+
 
 @O.k
 def auto_test():
@@ -169,6 +172,7 @@ def auto_test():
             assert data.nums[num].count == 398
             assert close(data.nums[num].mean, 23.84)
             assert close(data.nums[num].standard_deviation, 8.34)
+
 
 if __name__ == "__main__":
     O.report()
