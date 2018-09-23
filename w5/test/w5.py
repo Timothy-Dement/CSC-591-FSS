@@ -1,16 +1,13 @@
+import os
+import sys
 import re, traceback
 
+root = os.path.abspath(os.path.join(os.getcwd().split("src")[0], 'src'))
+if root not in sys.path:
+    sys.path.append(str(root))
+
 # How can I import the Data class here from src/data.py?
-
-# from . import Data
-
-# from .data import Data
-
-# from data import Data
-
-# from ..data import Data
-
-# from .. import Data
+from data import Data
 
 class O:
     y = n = 0
@@ -42,7 +39,7 @@ def dom_test_one():
     """
 
     data = Data()
-    data.rows('../input/weatherLong.csv')
+    data.rows(os.path.join(root, 'input/weatherLong.csv'))
     data.doms()
 
     dom_sort = sorted(data.data_rows, key=lambda x: x[len(x) - 1], reverse=True)

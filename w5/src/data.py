@@ -1,8 +1,15 @@
-import math, random, re
+import os
+import sys
+import re
+import math
+import random
 
 from num import Num
 from sym import Sym
 
+root = os.path.abspath(os.path.join(os.getcwd().split("src")[0], 'src'))
+if root not in sys.path:
+    sys.path.append(str(root))
 
 class Data:
 
@@ -125,7 +132,7 @@ class Data:
 
 
 data = Data()
-data.rows('../input/weatherLong.csv')
+data.rows(os.path.join(root, 'input/weatherLong.csv'))
 
 data.doms()
 
