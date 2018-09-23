@@ -1,10 +1,11 @@
 ########
 #
-#  Ignore .idea in sub-directories
+#  Ignore full .idea in root and sub-directories
 #
 ########
 
 */.idea/*
+.idea/*
 
 ########
 #

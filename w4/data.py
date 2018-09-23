@@ -66,14 +66,16 @@ class Data:
 
     def rows(self, file):
 
-        for index, line in enumerate(open(file)):
+        with open(file):
 
-            line = re.sub(r'[ \n\r\t]*|#.*', '', line).split(',')
+            for index, line in enumerate(open(file)):
 
-            if index == 0:
-                self.header(line)
-            else:
-                self.row(line)
+                line = re.sub(r'[ \n\r\t]*|#.*', '', line).split(',')
+
+                if index == 0:
+                    self.header(line)
+                else:
+                    self.row(line)
 
     def print_table(self):
 
