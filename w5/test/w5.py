@@ -1,16 +1,11 @@
-import re, traceback
+import os, sys, re, traceback
 
-# How can I import the Data class here from src/data.py?
+root = os.path.abspath(os.path.join(os.getcwd().split('src')[0], 'src'))
 
-# from . import Data
+if root not in sys.path:
+    sys.path.append(str(root))
 
-# from .data import Data
-
-# from data import Data
-
-# from ..data import Data
-
-# from .. import Data
+from data import Data
 
 class O:
     y = n = 0
@@ -33,7 +28,6 @@ class O:
             O.n += 1
             print(traceback.format_exc())
         return f
-
 
 @O.k
 def dom_test_one():

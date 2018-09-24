@@ -1,7 +1,12 @@
-import math, random, re
+import math, os, random, re, sys
 
 from num import Num
 from sym import Sym
+
+root = os.path.abspath(os.path.join(os.getcwd().split('src')[0], 'src'))
+
+if root not in sys.path:
+    sys.path.append(str(root))
 
 
 class Data:
@@ -102,7 +107,6 @@ class Data:
         other_shout = 0
 
         for col_weight in self.weights:
-
             current_val = current_row[col_weight]
             other_val = other_row[col_weight]
 
@@ -122,22 +126,3 @@ class Data:
             self.another(current_row)
         else:
             return self.data_rows[other_row]
-
-
-data = Data()
-data.rows('../input/weatherLong.csv')
-
-data.doms()
-
-# sorted is non-destructive
-
-sorted_rows = sorted(data.data_rows, key=lambda x: x[len(x) - 1], reverse=True)
-
-
-for name in data.names:
-    print(data.names[name], end=' ')
-
-print()
-
-for row in sorted_rows:
-    print(row)
