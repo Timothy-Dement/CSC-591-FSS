@@ -3,11 +3,6 @@ import math, os, random, re, sys
 from num import Num
 from sym import Sym
 
-root = os.path.abspath(os.path.join(os.getcwd().split('src')[0], 'src'))
-
-if root not in sys.path:
-    sys.path.append(str(root))
-
 
 class Data:
 
