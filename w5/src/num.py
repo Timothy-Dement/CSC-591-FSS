@@ -42,6 +42,8 @@ class Num:
 
     def num_dec(self, remove):
 
+        print('\nCOUNT: ', self.count, '\tREMOVE: ', remove, '\tMEAN: ', round(self.mean, 2), '\tM2: ', round(self.m2, 2), '\tSD: ', round(self.standard_deviation, 2))
+
         if not self.count == 1:
 
             self.count -= 1
@@ -52,8 +54,12 @@ class Num:
 
             self.m2 -= delta * (remove - self.mean)
 
+            print('|-- COUNT: ', self.count, '\tREMOVE: ', remove, '\tMEAN: ', round(self.mean, 2), '\tM2: ', round(self.m2, 2), '\tSD: ', round(self.standard_deviation, 2))
+
             if self.count > 1:
                 self.standard_deviation = sqrt(self.m2 / (self.count - 1 + 10 ** -32))
+
+
 
     def num_norm(self, x):
 

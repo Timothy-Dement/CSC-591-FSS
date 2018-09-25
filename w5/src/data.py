@@ -121,3 +121,85 @@ class Data:
             self.another(current_row)
         else:
             return self.data_rows[other_row]
+
+    def unsuper(self):
+
+        enough = len(self.data_rows) ** 0.5
+
+        sorted_rows = []
+
+        for indep in self.indeps:
+            if indep in self.nums:
+                sorted_rows = sorted(self.data_rows, key=lambda x: math.inf if x[indep] == '?' else x[indep])
+
+        stop = len(sorted_rows) - 1
+
+        for indep in self.indeps:
+            if indep in self.nums:
+                while sorted_rows[stop][indep] == '?':
+                    stop -= 1
+
+
+        def band(col, lo, hi):
+
+            if lo == 1:
+                return '..' + sorted_rows[hi][col]
+            elif hi == stop:
+                return sorted_rows[lo][col] + '..'
+            else:
+                return sorted_rows[lo][col] + '..' + sorted_rows[hi][col]
+
+        def argmin(col, lo, hi):
+
+            if hi - lo > 2 * enough:
+
+                l, r = Num(), Num()
+
+                for i in range(lo, hi + 1):
+                    r.num_inc(sorted_rows[i][col])
+
+                best = r.standard_deviation
+
+                for i in range(lo, hi + 1):
+
+                    curr_val = sorted_rows[i][col]
+
+                    l.num_inc(curr_val)
+                    r.num_dec(curr_val)
+
+                    if l.count >= enough and r.count >= enough:
+
+                        tmp = l.num_xpect(r) * 1.05
+
+                        if tmp < best:
+
+                            cut, best = i, tmp
+
+            return cut
+
+        def cuts(col, lo, hi, pre):
+
+            txt = pre + str(sorted_rows[lo][col]) + '..' + str(sorted_rows[hi][col])
+
+            cut = argmin(col, lo, hi)
+
+            if cut:
+
+                sys.stderr.write(txt + '\n')
+                cuts(col, lo, cut, pre + '|..')
+                cuts(col, cut + 1, hi, pre + '|..')
+
+            else:
+
+                b = band(col, lo, hi)
+                sys.stderr.write(txt + ' (' + b + ')')
+
+                for i in range(lo, hi + 1):
+                    sorted_rows[i][col] = b
+
+        for indep in self.indeps:
+            if indep in self.nums:
+                sys.stderr.write('\n-- ' + self.names[indep] + ' : ' + str(stop) + ' ----------\n')
+                cuts(indep, 0, stop, '|..')
+
+        return sorted_rows
