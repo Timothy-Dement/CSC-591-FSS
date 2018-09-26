@@ -6,4 +6,4 @@ Submissions:
 
 | # | Date |
 | --- | --- |
-| ... | ... |
+| 1 | THU 27 SEP 2018 |

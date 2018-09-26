@@ -142,14 +142,16 @@ class Data:
 
         def band(col, lo, hi):
 
-            if lo == 1:
-                return '..' + sorted_rows[hi][col]
+            if lo == 0:
+                return '..' + str(sorted_rows[hi][col])
             elif hi == stop:
-                return sorted_rows[lo][col] + '..'
+                return str(sorted_rows[lo][col]) + '..'
             else:
-                return sorted_rows[lo][col] + '..' + sorted_rows[hi][col]
+                return str(sorted_rows[lo][col]) + '..' + str(sorted_rows[hi][col])
 
         def argmin(col, lo, hi):
+
+            cut = None
 
             if hi - lo > 2 * enough:
 
@@ -192,7 +194,7 @@ class Data:
             else:
 
                 b = band(col, lo, hi)
-                sys.stderr.write(txt + ' (' + b + ')')
+                sys.stderr.write(txt + ' (' + b + ')\n')
 
                 for i in range(lo, hi + 1):
                     sorted_rows[i][col] = b
