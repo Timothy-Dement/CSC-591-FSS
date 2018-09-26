@@ -81,6 +81,7 @@ def dom_test_one():
         print('-', end='')
     print('\n')
 
+
 @O.k
 def dom_test_two():
     """

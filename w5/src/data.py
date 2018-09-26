@@ -139,7 +139,6 @@ class Data:
                 while sorted_rows[stop][indep] == '?':
                     stop -= 1
 
-
         def band(col, lo, hi):
 
             if lo == 0:
@@ -174,7 +173,6 @@ class Data:
                         tmp = l.num_xpect(r) * 1.05
 
                         if tmp < best:
-
                             cut, best = i, tmp
 
             return cut

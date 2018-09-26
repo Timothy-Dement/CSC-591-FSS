@@ -59,8 +59,6 @@ class Num:
             if self.count > 1:
                 self.standard_deviation = sqrt(self.m2 / (self.count - 1 + 10 ** -32))
 
-
-
     def num_norm(self, x):
 
         return (x - self.lo) / (self.hi - self.lo + 10 ** -32)
