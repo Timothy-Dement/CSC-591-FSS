@@ -1,3 +1,4 @@
+import math
 import os
 import re
 import sys
@@ -35,17 +36,32 @@ class O:
             print(traceback.format_exc())
         return f
 
+def close(x, y, c=0.01):
+    return math.fabs((x - y) / y) < c
 
 @O.k
 def super_dom_one():
     """
-    INCOMPLETE
+    Testing supervised domination on weatherLong.csv ...
+
+    1. Calculate dom scores for weatherLong.csv rows
+    2. Perform supervised discretizaion (goal: dom)
+    3. Find the attribute to split that minimizes expected value
+    4. Check that the attribute and expected value are relatively stable
     """
 
     data = Data()
     data.rows(input_path + '/weatherLong.csv')
     data.doms()
     data.super()
+
+    splitter, xpect = data.splitter()
+
+    print(f'\nSplit:\t{data.names[splitter]}')
+    print(f'Xpect:\t{round(xpect, 4)}')
+
+    assert '$temp' == data.names[splitter]
+    assert close(xpect, 0.16, 0.5)
 
     print()
     table = PrettyTable(title='weatherLong.csv')
@@ -59,19 +75,18 @@ def super_dom_one():
     print(table)
     print()
 
-    ########
-    #
-    #  SOMEHOW NEED TO FIND SPLIT, THEN ASSERT
-    #
-    ########
-
 if __name__ == "__main__":
     O.report()
 
 @O.k
 def super_dom_two():
     """
-    INCOMPLETE
+    Testing supervised domination on auto.csv ...
+
+    1. Calculate dom scores for auto.csv rows
+    2. Perform supervised discretizaion (goal: dom)
+    3. Find the attribute to split that minimizes expected value
+    4. Check that the attribute and expected value are relatively stable
     """
 
     data = Data()
@@ -79,10 +94,12 @@ def super_dom_two():
     data.doms()
     data.super()
 
+    splitter, xpect = data.splitter()
+
+    print(f'\nSplit:\t{data.names[splitter]}')
+    print(f'Xpect:\t{round(xpect, 4)}')
+
     print()
 
-    ########
-    #
-    #  SOMEHOW NEED TO FIND SPLIT, THEN ASSERT
-    #
-    ########
+    assert '$horsepower' == data.names[splitter]
+    assert close(xpect, 0.09, 0.5)

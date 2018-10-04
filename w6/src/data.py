@@ -1,4 +1,4 @@
-import math, os, random, re, sys
+import collections, math, os, random, re, sys
 
 from num import Num
 from sym import Sym
@@ -15,6 +15,7 @@ class Data:
         self.data_rows = []
         self.names = {}
         self.valid_cols = []
+        self.splits = collections.defaultdict(list)
 
     def independent(self, col):
         return col not in self.weights and self.class_col != col
@@ -173,13 +174,13 @@ class Data:
                         if tmpx < bestx and tmpy < besty:
                             cut, bestx, besty = i, tmpx, tmpy
 
-            return cut, mu
+            return cut, mu, besty
 
         def cuts(col, lo, hi, pre):
 
             txt = pre + str(self.data_rows[lo][col]) + '..' + str(self.data_rows[hi][col])
 
-            cut, mu = argmin(col, lo, hi)
+            cut, mu, sd = argmin(col, lo, hi)
 
             if cut:
 
@@ -190,7 +191,11 @@ class Data:
             else:
 
                 s = band(col, lo, hi)
-                sys.stderr.write(txt + ' = ' + str(math.floor(100 * mu)) + '\n')
+                sys.stderr.write(txt + ' : mu = ' + str(math.floor(100 * mu)) + ' | sd = ' + str(round(sd, 2)) + '\n')
+
+                metrics = { 'mu': math.floor(100 * mu), 'sd': sd }
+
+                self.splits[indep].append(metrics)
 
                 for i in range(lo, hi + 1):
                     self.data_rows[i][col] = s
@@ -214,3 +219,25 @@ class Data:
                 sys.stderr.write('\n-- ' + self.names[indep] + ' : ' + str(most) + ' ----------\n')
 
                 cuts(indep, 0, most, '|..')
+
+
+    def splitter(self):
+
+        best_splitter, best_xpect = None, math.inf
+
+        for indep in self.splits:
+
+            total = 0
+            xpect = 0
+
+            for split in self.splits[indep]:
+                total += split['mu']
+
+            for split in self.splits[indep]:
+                xpect += split['mu'] / total * split['sd']
+
+            if xpect < best_xpect:
+                best_splitter = indep
+                best_xpect = xpect
+
+        return best_splitter, best_xpect
