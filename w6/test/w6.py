@@ -75,9 +75,6 @@ def super_dom_one():
     print(table)
     print()
 
-if __name__ == "__main__":
-    O.report()
-
 @O.k
 def super_dom_two():
     """
@@ -103,3 +100,6 @@ def super_dom_two():
 
     assert '$horsepower' == data.names[splitter]
     assert close(xpect, 0.09, 0.5)
+
+if __name__ == "__main__":
+    O.report()
