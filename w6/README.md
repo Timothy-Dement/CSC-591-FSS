@@ -2,7 +2,7 @@
 
 [Task Description](https://txt.github.io/fss18/proj/w6/)
 
-***In progress...***
+***In progress -- still need to figure out splitter...***
 
 New code is in the `super` function of [`src/data.py`](src/data.py).
 
