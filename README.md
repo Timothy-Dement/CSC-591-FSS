@@ -15,5 +15,5 @@
 
 ## Poster
 
-[poster](poster)
+[Automated Parameter Optimization of Classification Techniques for Defect Prediction Models](poster/tmdement_poster.pdf)
 
